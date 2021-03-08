@@ -9,21 +9,23 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 
+
+export const CategoryContext = createContext();
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  const [category, setCategory] = useState('laptop');
 
   return (
-    <div>
-      <p>Count : {count}</p>
-      <Header count={count} setCount={setCount}></Header>
-      <Home count={count}></Home>
+    <CategoryContext.Provider value={[category, setCategory]}>
+      <p>category : {category}</p>
+      <Header></Header>
+      <Home></Home>
       <Shipment></Shipment>
 
-    </div>
+    </CategoryContext.Provider>
   );
 }
 
